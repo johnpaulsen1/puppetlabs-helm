@@ -20,6 +20,9 @@
 # @param env
 #   Sets the environment variables required for Helm to connect to the kubernetes cluster.
 #
+# @param exec_user
+#   The user to run the 'helm repo' command as.
+#
 # @param key_file
 #   Use the SSL key file to identify the HTTPS client.
 #
@@ -60,6 +63,7 @@ define helm::repo (
   Optional[String] $cert_file        = undef,
   Boolean $debug                     = false,
   Optional[Array] $env               = undef,
+  Optional[String] $exec_user        = undef,
   Optional[String] $key_file         = undef,
   Boolean $no_update                 = false,
   Optional[String] $home             = undef,
@@ -114,6 +118,7 @@ define helm::repo (
     command     => $exec_repo,
     environment => $env,
     path        => $path,
+    user        => $exec_user,
     timeout     => 0,
     unless      => $unless_repo,
     logoutput   => true,
