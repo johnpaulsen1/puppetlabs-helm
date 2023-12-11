@@ -21,6 +21,7 @@ module Puppet::Parser::Functions
     flags << "--tiller-namespace '#{opts['tiller_namespace']}'" if opts['tiller_namespace'] && opts['tiller_namespace'].to_s != 'undef'
     flags << "--username '#{opts['username']}'" if opts['username'] && opts['username'].to_s != 'undef'
     flags << "--password '#{opts['password']}'" if opts['password'] && opts['password'].to_s != 'undef'
+    flags << "--registry-config '#{opts['reg_config']}'" if opts['reg_config'] && opts['reg_config'].to_s != 'undef'
     flags << "--repository-config '#{opts['repo_config']}'" if opts['repo_config'] && opts['repo_config'].to_s != 'undef'
     flags << "'#{opts['repo_name']}'" if opts['repo_name'] && opts['repo_name'].to_s != 'undef'
     flags << "'#{opts['url']}'" if opts['url'] && opts['url'].to_s != 'undef'

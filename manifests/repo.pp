@@ -54,6 +54,9 @@
 # @param repo_config
 #   The path to the file containing repository names and URLs.
 #
+# @param reg_config
+#   The path to the file containing registry config.
+#
 # @param repo_name
 #   The name for the remote repository.
 #
@@ -76,6 +79,7 @@ define helm::repo (
   Optional[String] $tiller_namespace = undef,
   Optional[String] $username         = undef,
   Optional[String] $password         = undef,
+  Optional[String] $reg_config       = undef,
   Optional[String] $repo_config      = undef,
   Optional[String] $repo_name        = undef,
   Optional[String] $url              = undef,
@@ -96,6 +100,7 @@ define helm::repo (
         tiller_namespace => $tiller_namespace,
         username => $username,
         password => $password,
+        reg_config => $reg_config,
         repo_config => $repo_config,
         repo_name => $repo_name,
         url => $url,
@@ -111,6 +116,7 @@ define helm::repo (
         home => $home,
         host => $host,
         kube_context => $kube_context,
+        reg_config => $reg_config,
         repo_config => $repo_config,
         repo_name => $repo_name,
         tiller_namespace => $tiller_namespace,
