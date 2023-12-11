@@ -54,6 +54,9 @@
 # @param repo_config
 #   The path to the file containing repository names and URLs.
 #
+# @param reg_config
+#   The path to the file containing registry config.
+#
 # @param repo_name
 #   The name for the remote repository.
 #
