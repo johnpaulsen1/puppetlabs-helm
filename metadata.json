@@ -1,12 +1,12 @@
 {
   "name": "puppetlabs-helm",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "author": "puppetlabs",
   "summary": "A module to install Helm, a kubernetes package manager",
   "license": "Apache-2.0",
-  "source": "https://github.com/puppetlabs/puppetlabs-helm",
-  "project_page": "https://github.com/puppetlabs/puppetlabs-helm",
-  "issues_url": "https://github.com/puppetlabs/puppetlabs-helm/issues",
+  "source": "https://github.com/johnpaulsen1/puppetlabs-helm",
+  "project_page": "https://github.com/johnpaulsen1/puppetlabs-helm",
+  "issues_url": "https://github.com/johnpaulsen1/puppetlabs-helm/issues",
   "dependencies": [
     {
       "name": "puppetlabs-stdlib",
@@ -27,14 +27,14 @@
     {
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
-
+        "20.04"
       ]
     }
   ],
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 6.0.0 < 7"
+      "version_requirement": ">= 6.0.0 < 7.25.0"
     }
   ],
   "pdk-version": "2.4.0",
