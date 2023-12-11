@@ -10,6 +10,8 @@ module Puppet::Parser::Functions
     opts = args[0] || {}
     flags = []
     flags << 'add' if opts['ensure'].to_s == 'present'
+    flags << "'#{opts['repo_name']}'" if opts['repo_name'] && opts['repo_name'].to_s != 'undef'
+    flags << "'#{opts['url']}'" if opts['url'] && opts['url'].to_s != 'undef'
     flags << "--ca-file '#{opts['ca_file']}'" if opts['ca_file'] && opts['ca_file'].to_s != 'undef'
     flags << "--cert-file '#{opts['cert_file']}'" if opts['cert_file'] && opts['cert_file'].to_s != 'undef'
     flags << '--debug' if opts['debug']
@@ -23,8 +25,6 @@ module Puppet::Parser::Functions
     flags << "--password '#{opts['password']}'" if opts['password'] && opts['password'].to_s != 'undef'
     flags << "--registry-config '#{opts['reg_config']}'" if opts['reg_config'] && opts['reg_config'].to_s != 'undef'
     flags << "--repository-config '#{opts['repo_config']}'" if opts['repo_config'] && opts['repo_config'].to_s != 'undef'
-    flags << "'#{opts['repo_name']}'" if opts['repo_name'] && opts['repo_name'].to_s != 'undef'
-    flags << "'#{opts['url']}'" if opts['url'] && opts['url'].to_s != 'undef'
     flags.flatten.join(' ')
   end
 end
