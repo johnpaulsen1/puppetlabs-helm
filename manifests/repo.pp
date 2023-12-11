@@ -51,6 +51,9 @@
 # @param password
 #   The password for the remote repository.
 #
+# @param repo_config
+#   The path to the file containing repository names and URLs.
+#
 # @param repo_name
 #   The name for the remote repository.
 #
@@ -73,13 +76,14 @@ define helm::repo (
   Optional[String] $tiller_namespace = undef,
   Optional[String] $username         = undef,
   Optional[String] $password         = undef,
+  Optional[String] $repo_config      = undef,
   Optional[String] $repo_name        = undef,
   Optional[String] $url              = undef,
 ) {
   include ::helm::params
 
   if $ensure == present {
-    $helm_repo_add_flags = helm_repo_add_flags( {
+    $helm_repo_add_flags = helm_repo_add_flags({
         ensure => $ensure,
         ca_file => $ca_file,
         cert_file => $cert_file,
@@ -92,6 +96,7 @@ define helm::repo (
         tiller_namespace => $tiller_namespace,
         username => $username,
         password => $password,
+        repo_config => $repo_config,
         repo_name => $repo_name,
         url => $url,
       }
@@ -101,11 +106,12 @@ define helm::repo (
   }
 
   if $ensure == absent {
-    $helm_repo_remove_flags = helm_repo_remove_flags( {
+    $helm_repo_remove_flags = helm_repo_remove_flags({
         ensure => $ensure,
         home => $home,
         host => $host,
         kube_context => $kube_context,
+        repo_config => $repo_config,
         repo_name => $repo_name,
         tiller_namespace => $tiller_namespace,
       }
