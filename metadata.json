@@ -1,6 +1,6 @@
 {
   "name": "puppetlabs-helm",
-  "version": "4.1.8",
+  "version": "4.1.9",
   "author": "puppetlabs",
   "summary": "A module to install Helm, a kubernetes package manager",
   "license": "Apache-2.0",
