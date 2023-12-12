@@ -114,8 +114,8 @@ define helm::repo (
     $exec_repo = "helm repo ${helm_repo_add_flags}"
     notify { "Adding helm repo ${repo_name}": }
     notify { "${repo_name}: with flags ${helm_repo_add_flags}": }
-    $helm_repo_add_flags.each |$key, $value| {
-      notify { "${repo_name} -> ${key}: ${value}": }
+    $helm_repo_add_flags.each |$flag| {
+      notify { "${repo_name} -> ${flag}": }
     }
     $unless_repo = "helm repo list | awk '{if(NR>1)print \$1}' | grep -w ${repo_name}"
   }
