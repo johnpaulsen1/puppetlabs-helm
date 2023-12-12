@@ -27,5 +27,7 @@ module Puppet::Parser::Functions
     flags << "--repository-cache '#{opts['repo_cache']}'" if opts['repo_cache'] && opts['repo_cache'].to_s != 'undef'
     flags << "--repository-config '#{opts['repo_config']}'" if opts['repo_config'] && opts['repo_config'].to_s != 'undef'
     flags.flatten.join(' ')
+    puts 'flags:'
+    puts flags.inspect
   end
 end
