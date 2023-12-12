@@ -112,9 +112,9 @@ define helm::repo (
     )
     $exec_repo = "helm repo add ${helm_repo_add_flags}"
     if $repo_config != undef {
-      $unless_repo = "helm repo list --repository-config ${repo_config} | awk '{if (\$1 == \"${repo_name}\") exit 0}'"
+      $unless_repo = "helm repo list --repository-config ${repo_config} | awk '{if(NR>1)print \$1}' | grep -w ${repo_name}"
     } else {
-      $unless_repo = "helm repo list | awk '{if (\$1 == \"${repo_name}\") exit 0}'"
+      $unless_repo = "helm repo list | awk '{if(NR>1)print \$1}' | grep -w ${repo_name}"
     }
     notify { "unless_repo -> '${unless_repo}'": }
   }
