@@ -122,6 +122,7 @@ define helm::repo (
         host => $host,
         kube_context => $kube_context,
         reg_config => $reg_config,
+        repo_cache => $repo_cache,
         repo_config => $repo_config,
         repo_name => $repo_name,
         tiller_namespace => $tiller_namespace,
