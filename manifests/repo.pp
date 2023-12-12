@@ -89,8 +89,6 @@ define helm::repo (
   Optional[String] $url              = undef,
 ) {
   include ::helm::params
-  notify { "repo_cache: ${repo_cache}": }
-
   if $ensure == present {
     $helm_repo_add_flags = helm_repo_add_flags({
         ensure => $ensure,
@@ -113,7 +111,6 @@ define helm::repo (
       }
     )
     $exec_repo = "helm repo ${helm_repo_add_flags}"
-    notify { "Adding helm repo: ${repo_name}: with flags ${helm_repo_add_flags}": }
     $unless_repo = "helm repo list | awk '{if(NR>1)print \$1}' | grep -w ${repo_name}"
   }
 
