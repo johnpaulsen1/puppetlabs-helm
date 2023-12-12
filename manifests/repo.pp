@@ -111,7 +111,8 @@ define helm::repo (
       }
     )
     $exec_repo = "helm repo add ${helm_repo_add_flags}"
-    $unless_repo = "helm repo list ${helm_repo_add_flags} | awk '{if(NR>1)print \$1}' | grep -w ${repo_name}"
+    $unless_repo = "helm repo list ${helm_repo_add_flags['repo_config']} | awk '{if(NR>1)print \$1}' | grep -w ${repo_name}"
+    notify { "unless_repo -> '${unless_repo}'": }
   }
 
   if $ensure == absent {
@@ -128,7 +129,7 @@ define helm::repo (
       }
     )
     $exec_repo = "helm repo remove ${helm_repo_remove_flags}"
-    $unless_repo = "helm repo list ${helm_repo_remove_flags} | awk '{if (\$1 == \"${repo_name}\") exit 1}'"
+    $unless_repo = "helm repo list ${helm_repo_remove_flags['repo_config']} | awk '{if(NR>1)print \$1}' | grep -w ${repo_name}"
   }
 
   exec { "helm repo ${repo_name}":
