@@ -83,8 +83,8 @@ define helm::repo (
   Optional[String] $username         = undef,
   Optional[String] $password         = undef,
   Optional[String] $reg_config       = undef,
-  Optional[String] $repo_config      = undef,
   Optional[String] $repo_cache       = undef,
+  Optional[String] $repo_config      = undef,
   Optional[String] $repo_name        = undef,
   Optional[String] $url              = undef,
 ) {
