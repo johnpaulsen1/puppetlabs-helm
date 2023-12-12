@@ -110,8 +110,8 @@ define helm::repo (
         url => $url,
       }
     )
-    $exec_repo = "helm repo ${helm_repo_add_flags}"
-    $unless_repo = "helm repo list | awk '{if(NR>1)print \$1}' | grep -w ${repo_name}"
+    $exec_repo = "helm repo add ${helm_repo_add_flags}"
+    $unless_repo = "helm repo list ${helm_repo_add_flags} | awk '{if(NR>1)print \$1}' | grep -w ${repo_name}"
   }
 
   if $ensure == absent {
@@ -127,8 +127,8 @@ define helm::repo (
         tiller_namespace => $tiller_namespace,
       }
     )
-    $exec_repo = "helm repo ${helm_repo_remove_flags}"
-    $unless_repo = "helm repo list | awk '{if (\$1 == \"${repo_name}\") exit 1}'"
+    $exec_repo = "helm repo remove ${helm_repo_remove_flags}"
+    $unless_repo = "helm repo list ${helm_repo_remove_flags} | awk '{if (\$1 == \"${repo_name}\") exit 1}'"
   }
 
   exec { "helm repo ${repo_name}":

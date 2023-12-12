@@ -9,7 +9,6 @@ module Puppet::Parser::Functions
   newfunction(:helm_repo_add_flags, :type => :rvalue) do |args|
     opts = args[0] || {}
     flags = []
-    flags << 'add' if opts['ensure'].to_s == 'present'
     flags << "'#{opts['repo_name']}'" if opts['repo_name'] && opts['repo_name'].to_s != 'undef'
     flags << "'#{opts['url']}'" if opts['url'] && opts['url'].to_s != 'undef'
     flags << "--ca-file '#{opts['ca_file']}'" if opts['ca_file'] && opts['ca_file'].to_s != 'undef'

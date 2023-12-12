@@ -9,7 +9,6 @@ module Puppet::Parser::Functions
   newfunction(:helm_repo_remove_flags, :type => :rvalue) do |args|
     opts = args[0] || {}
     flags = []
-    flags << 'remove' if opts['ensure'].to_s == 'absent'
     flags << "'#{opts['repo_name']}'" if opts['repo_name'] && opts['repo_name'].to_s != 'undef'
     flags << "--home '#{opts['home']}'" if opts['home'] && opts['home'].to_s != 'undef'
     flags << "--host '#{opts['host']}'" if opts['host'] && opts['host'].to_s != 'undef'
