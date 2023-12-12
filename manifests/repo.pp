@@ -89,6 +89,7 @@ define helm::repo (
   Optional[String] $url              = undef,
 ) {
   include ::helm::params
+  notify { "repo_cache: ${repo_cache}": }
 
   if $ensure == present {
     $helm_repo_add_flags = helm_repo_add_flags({
