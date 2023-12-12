@@ -89,12 +89,6 @@ define helm::repo (
   Optional[String] $url              = undef,
 ) {
   include ::helm::params
-  if $repo_config != undef {
-    $unless_repo = "helm repo list --repository-config ${repo_config} | awk '{if(NR>1)print \$1}' | grep -w ${repo_name}"
-  } else {
-    $unless_repo = "helm repo list | awk '{if(NR>1)print \$1}' | grep -w ${repo_name}"
-  }
-  notify { "unless_repo -> '${unless_repo}'": }
   if $ensure == present {
     $helm_repo_add_flags = helm_repo_add_flags({
         ensure => $ensure,
@@ -117,6 +111,12 @@ define helm::repo (
       }
     )
     $exec_repo = "helm repo add ${helm_repo_add_flags}"
+    if $repo_config != undef {
+      $unless_repo = "helm repo list --repository-config ${repo_config} | awk '{if (\$1 == \"${repo_name}\") exit 0}'"
+    } else {
+      $unless_repo = "helm repo list | awk '{if (\$1 == \"${repo_name}\") exit 0}'"
+    }
+    notify { "unless_repo -> '${unless_repo}'": }
   }
 
   if $ensure == absent {
@@ -133,6 +133,12 @@ define helm::repo (
       }
     )
     $exec_repo = "helm repo remove ${helm_repo_remove_flags}"
+    if $repo_config != undef {
+      $unless_repo = "helm repo list --repository-config ${repo_config} | awk '{if (\$1 == \"${repo_name}\") exit 1}'"
+    } else {
+      $unless_repo = "helm repo list | awk '{if (\$1 == \"${repo_name}\") exit 1}'"
+    }
+    notify { "unless_repo -> '${unless_repo}'": }
   }
 
   exec { "helm repo ${repo_name}":
