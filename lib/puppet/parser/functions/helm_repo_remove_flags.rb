@@ -16,6 +16,7 @@ module Puppet::Parser::Functions
     flags << "--kube-context '#{opts['kube_context']}'" if opts['kube_context'] && opts['kube_context'].to_s != 'undef'
     flags << "--tiller-namespace '#{opts['tiller_namespace']}'" if opts['tiller_namespace'] && opts['tiller_namespace'].to_s != 'undef'
     flags << "--registry-config '#{opts['reg_config']}'" if opts['reg_config'] && opts['reg_config'].to_s != 'undef'
+    flags << "--repository-cache '#{opts['repo_cache']}'" if opts['repo_cache'] && opts['repo_cache'].to_s != 'undef'
     flags << "--repository-config '#{opts['repo_config']}'" if opts['repo_config'] && opts['repo_config'].to_s != 'undef'
     flags.flatten.join(' ')
   end
