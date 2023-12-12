@@ -51,6 +51,9 @@
 # @param password
 #   The password for the remote repository.
 #
+# @param repo_cache
+#   The path to the file containing cached repository indexes.
+#
 # @param repo_config
 #   The path to the file containing repository names and URLs.
 #
@@ -81,6 +84,7 @@ define helm::repo (
   Optional[String] $password         = undef,
   Optional[String] $reg_config       = undef,
   Optional[String] $repo_config      = undef,
+  Optional[String] $repo_cache       = undef,
   Optional[String] $repo_name        = undef,
   Optional[String] $url              = undef,
 ) {
@@ -101,6 +105,7 @@ define helm::repo (
         username => $username,
         password => $password,
         reg_config => $reg_config,
+        repo_cache => $repo_cache,
         repo_config => $repo_config,
         repo_name => $repo_name,
         url => $url,
