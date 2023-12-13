@@ -116,7 +116,6 @@ define helm::repo (
     } else {
       $unless_repo = "helm repo list | awk '{if(NR>1)print \$1}' | grep -w ${repo_name}"
     }
-    notify { "unless_repo -> '${unless_repo}'": }
   }
 
   if $ensure == absent {
@@ -138,7 +137,6 @@ define helm::repo (
     } else {
       $unless_repo = "helm repo list | awk '{if (\$1 == \"${repo_name}\") exit 1}'"
     }
-    notify { "unless_repo -> '${unless_repo}'": }
   }
 
   exec { "helm repo ${repo_name}":
